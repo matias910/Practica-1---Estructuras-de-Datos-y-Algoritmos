@@ -8,26 +8,25 @@
 #include "../include/AVLtree.h"
 
 int main() {
-    // ── Cargar dataset ────────────────────────────────────────────────────
+    // Cargar dataset
     const std::string DATASET = "../data/dataset.txt";
-    std::cout << "Cargando dataset...\n";
-    std::vector<std::string> words = loadDataset(DATASET);
+    std::vector<std::string> words = loadDataset(DATASET);  // Guarda las palabras en words
 
-    // ── QuickSort ─────────────────────────────────────────────────────────
+    // QuickSort
     std::vector<std::string> qsWords = words;
-    auto t1 = std::chrono::high_resolution_clock::now();
-    quickSort(qsWords, 0, (int)qsWords.size() - 1);
-    auto t2 = std::chrono::high_resolution_clock::now();
-    double qsTime = std::chrono::duration<double, std::milli>(t2 - t1).count();
+    auto t1 = std::chrono::high_resolution_clock::now(); // empieza a contar el reloj
+    quickSort(qsWords, 0, (int)qsWords.size() - 1); // ordena
+    auto t2 = std::chrono::high_resolution_clock::now(); // para el tiempo
+    double qsTime = std::chrono::duration<double, std::milli>(t2 - t1).count(); // calcula el tiempo
 
-    // ── HeapSort ──────────────────────────────────────────────────────────
+    // HeapSort
     std::vector<std::string> hsWords = words;
     auto t3 = std::chrono::high_resolution_clock::now();
     heapSort(hsWords);
     auto t4 = std::chrono::high_resolution_clock::now();
     double hsTime = std::chrono::duration<double, std::milli>(t4 - t3).count();
 
-    // ── AVL Tree ──────────────────────────────────────────────────────────
+    // AVL Tree
     AVLTree tree;
     auto t5 = std::chrono::high_resolution_clock::now();
     for (const auto& w : words)
@@ -49,9 +48,19 @@ int main() {
     std::cout << "AVL Tree   -> Tiempo: " << avlTime << " ms | Memoria: " << avlMem / 1024 << " KB\n";
 
     std::cout << "\n===== PRIMERAS 5 PALABRAS ORDENADAS =====\n";
-    std::cout << "QuickSort : "; for(int i=0;i<5;i++) std::cout << qsWords[i]  << " "; std::cout << "\n";
-    std::cout << "HeapSort  : "; for(int i=0;i<5;i++) std::cout << hsWords[i]  << " "; std::cout << "\n";
-    std::cout << "AVL Tree  : "; for(int i=0;i<5;i++) std::cout << avlWords[i] << " "; std::cout << "\n";
+    std::cout << "QuickSort : ";
+    for(int i = 0; i < 5; i++)
+        std::cout << "[" << qsWords[i] << "] ";
+    std::cout << "\n";
 
+    std::cout << "HeapSort  : ";
+    for(int i = 0; i < 5; i++)
+        std::cout << "[" << hsWords[i] << "] ";
+    std::cout << "\n";
+
+    std::cout << "AVL Tree  : ";
+    for(int i = 0; i < 5; i++)
+        std::cout << "[" << avlWords[i] << "] ";
+    std::cout << "\n";
     return 0;
 }
