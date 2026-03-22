@@ -6,14 +6,12 @@
 #define PRACTICA_1_ESTRUCTURAS_DE_DATOS_Y_ALGORITMOS_DATASET_H
 
 
-#pragma once
+#pragma once // evita duplicados
 #include <string>
 #include <vector>
 
-std::vector<std::string> generateDataset(const std::string& sourcePath,
-                                          const std::string& outputPath,
-                                          int count = 100000);
-
+std::vector<std::string> loadDataset(const std::string& path);
+// recibe una ruta del archivo y retorna un vector con las palabras
 
 
 #endif //PRACTICA_1_ESTRUCTURAS_DE_DATOS_Y_ALGORITMOS_DATASET_H

@@ -10,3 +10,7 @@ add_executable(Practica
         src/heapsort.cpp
         src/AVLtree.cpp
 )
+
+target_include_directories(Practica PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)

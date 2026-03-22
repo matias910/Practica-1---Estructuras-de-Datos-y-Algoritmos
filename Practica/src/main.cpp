@@ -2,19 +2,16 @@
 #include <vector>
 #include <string>
 #include <chrono>
-#include "dataset.h"
-#include "quicksort.h"
-#include "heapsort.h"
-#include "AVLtree.h"
+#include "../include/dataset.h"
+#include "../include/quicksort.h"
+#include "../include/heapsort.h"
+#include "../include/AVLtree.h"
 
 int main() {
-    // ── Paths ─────────────────────────────────────────────────────────────
-    const std::string SOURCE  = "../data/words_alpha.txt";
+    // ── Cargar dataset ────────────────────────────────────────────────────
     const std::string DATASET = "../data/dataset.txt";
-
-    // ── Generate dataset ──────────────────────────────────────────────────
-    std::cout << "Generating dataset...\n";
-    std::vector<std::string> words = generateDataset(SOURCE, DATASET);
+    std::cout << "Cargando dataset...\n";
+    std::vector<std::string> words = loadDataset(DATASET);
 
     // ── QuickSort ─────────────────────────────────────────────────────────
     std::vector<std::string> qsWords = words;
@@ -40,18 +37,18 @@ int main() {
     auto t6 = std::chrono::high_resolution_clock::now();
     double avlTime = std::chrono::duration<double, std::milli>(t6 - t5).count();
 
-    // ── Memory estimates ──────────────────────────────────────────────────
+    // ── Estimación de memoria ─────────────────────────────────────────────
     size_t qsMem  = qsWords.size()  * sizeof(std::string);
     size_t hsMem  = hsWords.size()  * sizeof(std::string);
     size_t avlMem = tree.memoryUsage();
 
-    // ── Results ───────────────────────────────────────────────────────────
-    std::cout << "\n===== RESULTS =====\n";
-    std::cout << "QuickSort  -> Time: " << qsTime  << " ms | Memory: " << qsMem  / 1024 << " KB\n";
-    std::cout << "HeapSort   -> Time: " << hsTime  << " ms | Memory: " << hsMem  / 1024 << " KB\n";
-    std::cout << "AVL Tree   -> Time: " << avlTime << " ms | Memory: " << avlMem / 1024 << " KB\n";
+    // ── Resultados ────────────────────────────────────────────────────────
+    std::cout << "\n===== RESULTADOS =====\n";
+    std::cout << "QuickSort  -> Tiempo: " << qsTime  << " ms | Memoria: " << qsMem  / 1024 << " KB\n";
+    std::cout << "HeapSort   -> Tiempo: " << hsTime  << " ms | Memoria: " << hsMem  / 1024 << " KB\n";
+    std::cout << "AVL Tree   -> Tiempo: " << avlTime << " ms | Memoria: " << avlMem / 1024 << " KB\n";
 
-    std::cout << "\n===== FIRST 5 SORTED WORDS (each algorithm) =====\n";
+    std::cout << "\n===== PRIMERAS 5 PALABRAS ORDENADAS =====\n";
     std::cout << "QuickSort : "; for(int i=0;i<5;i++) std::cout << qsWords[i]  << " "; std::cout << "\n";
     std::cout << "HeapSort  : "; for(int i=0;i<5;i++) std::cout << hsWords[i]  << " "; std::cout << "\n";
     std::cout << "AVL Tree  : "; for(int i=0;i<5;i++) std::cout << avlWords[i] << " "; std::cout << "\n";
