@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <chrono>
+#include <chrono> // para medir tiempo
 #include "../include/dataset.h"
 #include "../include/quicksort.h"
 #include "../include/heapsort.h"
@@ -30,9 +30,9 @@ int main() {
     AVLTree tree;
     auto t5 = std::chrono::high_resolution_clock::now();
     for (const auto& w : words)
-        tree.insert(w);
+        tree.insert(w); // inserta cada palabra en el arbol
     std::vector<std::string> avlWords;
-    tree.inorder(avlWords);
+    tree.inorder(avlWords); // recorre el arbol inorder y devuelve las palabras ordenadas alfabeticamente en avlWords
     auto t6 = std::chrono::high_resolution_clock::now();
     double avlTime = std::chrono::duration<double, std::milli>(t6 - t5).count();
 
