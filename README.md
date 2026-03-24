@@ -1,34 +1,25 @@
-# Práctica I – Ordenamiento de Dataset
-Matias Zapata Rojas
-Miguel Angel Jimenez Gomez
+# Práctica I – Estructura de Datos y Algoritmos
+Matias Zapata Rojas - Miguel Angel Jimenez Gomez
+
+Universidad EAFIT
+
+Docente: Alexander Narvaez Berrio
 
 ---
-
-## Contexto
-El objetivo de esta práctica es implementar y comparar tres estrategias de ordenamiento 
-sobre un dataset de 100,000 palabras en C++, analizando su comportamiento en términos 
-de tiempo de ejecución y uso de memoria.
+## Descripcion
+Elaborar un programa en C++ que permita ordenar un conjunto de 100,000 palabras usando 3 enfoques distintos (HeapSort, QuickSort, AVL Tree).
 
 ---
+## Objetivos
+Examinar cómo diferentes algoritmos y estructuras de datos responden al trabajar con grandes volúmenes de información, evaluando su desempeño en terminos de:
 
-## Estructura del ProyectoPractica/
-├── CMakeLists.txt
-├── data/
-│   └── dataset.txt
-├── include/
-│   ├── dataset.h
-│   ├── quicksort.h
-│   ├── heapsort.h
-│   └── AVLtree.h
-└── src/
-├── main.cpp
-├── dataset.cpp
-├── quicksort.cpp
-├── heapsort.cpp
-└── AVLtree.cpp
+⏱️ Tiempo de ejecución
+
+💾 Uso de memoria
+
+📈 Complejidad algorítmica
 
 ---
-
 ## Implementación
 
 ### QuickSort
@@ -50,6 +41,40 @@ para mantener el balance. El ordenamiento final se obtiene mediante un recorrido
 - Complejidad: **O(n log n)** inserción + **O(n)** recorrido
 
 ---
+## Estructura del Proyecto
+├── CMakeLists.txt   //
+
+├── data/
+
+│   └── dataset.txt  
+
+├── include/  
+
+│   ├── dataset.h
+
+│   ├── quicksort.h
+
+│   ├── heapsort.h
+
+│   └── AVLtree.h
+
+└── src/
+
+│  ├── main.cpp
+
+│   ├── dataset.cpp
+
+│   ├── quicksort.cpp
+
+│   ├── heapsort.cpp
+
+│   └── AVLtree.cpp
+
+---
+## Salida del programa
+
+
+---
 
 ## Resultados
 
@@ -68,26 +93,40 @@ El AVL Tree resultó ser el más rápido con 236ms, seguido de QuickSort con 318
 y HeapSort fue el más lento con 510ms.
 
 **¿Por qué la complejidad teórica difiere de los resultados prácticos?**
-El Big O solo mide el número de operaciones, pero ignora factores reales como:
-- **Cache del procesador** — HeapSort accede a posiciones distantes del arreglo 
-  generando cache misses
-- **Constantes ocultas** — dos algoritmos O(n log n) pueden tener trabajo interno muy diferente
-- **Datos de entrada** — QuickSort depende del pivot; con datos ordenados puede llegar a O(n²)
+
+Aunque los tres métodos presentan complejidad O(n log n), su comportamiento real varía debido a factores como:
+
+**Acceso a memoria:**
+
+QuickSort trabaja con datos contiguos por lo cual es más eficiente
+
+HeapSort accede a posiciones separadas, por esto tiene un menor rendimiento
+
+AVL utiliza nodos enlazados, gracias a esto es más costoso en accesos
+
+**Costos internos:**
+Las operaciones dentro de cada algoritmo no tienen el mismo peso en tiempo real.
+
+**Interacción con hardware:**
+La caché del procesador influye significativamente en el rendimiento
 
 **Ventajas y desventajas de cada estructura:**
 
 | Estructura | Ventajas | Desventajas |
 |------------|----------|-------------|
-| Vector + QuickSort | Rápido, bajo consumo de memoria | Peor caso O(n²) |
-| Binary Heap + HeapSort | Siempre O(n log n), in-place | Lento por cache misses |
-| AVL Tree | Balanceado, búsquedas en O(log n) | Mayor uso de memoria, complejo |
+| Vector + QuickSort | Alto rendimiento, uso eficiente de la memoria caché, bajo consumo de memoria adicional| Puede degradarse a O(n²) si el pivote no es adecuado |
+| Binary Heap + HeapSort | Complejidad garantizada en todos los casos (O(n log n)), no requiere memoria extra significativa (in-place) | Menor rendimiento práctico debido a accesos no contiguos en memoria |
+| AVL Tree | Mantiene el balance automáticamente, permite búsquedas e inserciones eficientes (O(log n)) | Mayor consumo de memoria por uso de nodos y punteros, implementación más compleja |
 
 ---
 
-## Conclusión
+## Conclusiones
 Los tres algoritmos producen el mismo resultado correcto pero con rendimientos distintos.
-QuickSort ofrece el mejor balance entre velocidad y memoria. HeapSort es preferible cuando 
-se necesita garantía estricta de O(n log n). El AVL Tree es útil cuando además del 
-ordenamiento se requieren búsquedas e inserciones dinámicas frecuentes.
+
+QuickSort ofrece el mejor balance entre velocidad y memoria. 
+
+HeapSort es preferible cuando se necesita garantía estricta de O(n log n). 
+
+El AVL Tree es útil cuando además del ordenamiento se requieren búsquedas e inserciones dinámicas frecuentes.
 
 ---
