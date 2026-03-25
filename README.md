@@ -42,7 +42,7 @@ para mantener el balance. El ordenamiento final se obtiene mediante un recorrido
 
 ---
 ## Estructura del Proyecto
-├── CMakeLists.txt   //
+├── CMakeLists.txt   
 
 ├── data/
 
@@ -73,46 +73,68 @@ para mantener el balance. El ordenamiento final se obtiene mediante un recorrido
 ---
 ## Salida del programa
 
+/home/matias/Documents/Universidad/Practica-1---Estructuras-de-Datos-y-Algoritmos/Practica/cmake-build-debug/Practica
+
+[Dataset] 100000 palabras cargadas.
+
+
+===== RESULTADOS =====
+
+QuickSort  -> Tiempo: 323.725 ms | Memoria: 3125 KB
+
+HeapSort   -> Tiempo: 762.193 ms | Memoria: 3125 KB
+
+AVL Tree   -> Tiempo: 450.68 ms | Memoria: 8593 KB
+
+
+===== PRIMERAS 5 PALABRAS ORDENADAS =====
+
+QuickSort : [a] [aahing] [aaliis] [aaronite] [aarrgh] 
+
+HeapSort  : [a] [aahing] [aaliis] [aaronite] [aarrgh] 
+
+AVL Tree  : [a] [aahing] [aaliis] [aaronite] [aarrgh] 
+
+Process finished with exit code 0
 
 ---
 
 ## Resultados
 
-| Algoritmo | Tiempo (ms) | Memoria estimada | Complejidad |
+| Algoritmo 📈 | Tiempo (ms) ⏱️ | Memoria estimada 💾 | Complejidad 🧠 |
 |-----------|-------------|-----------------|-------------|
-| QuickSort | ~318 ms | ~3,125 KB | O(n log n) prom. |
-| HeapSort | ~510 ms | ~3,125 KB | O(n log n) siempre |
-| AVL Tree | ~236 ms | ~8,593 KB | O(n log n) + O(n) |
+| QuickSort | 323.725 ms | 3,125 KB | O(n log n) prom. |
+| HeapSort | 762.193 ms | 3,125 KB | O(n log n) siempre |
+| AVL Tree | 450.68 ms | 8,593 KB | O(n log n) + O(n) |
 
 ---
 
 ## Análisis
 
 **¿Cuál algoritmo fue más rápido?**
-El AVL Tree resultó ser el más rápido con 236ms, seguido de QuickSort con 318ms, 
-y HeapSort fue el más lento con 510ms.
+
+El algoritmo mas rapido fue el QuickSort con un tiempo de 323.725 ms, seguido del AVL Tree con 450.68 ms, para terminar con el HeapSort con 762.193 siendo este el mas lento
 
 **¿Por qué la complejidad teórica difiere de los resultados prácticos?**
 
 Aunque los tres métodos presentan complejidad O(n log n), su comportamiento real varía debido a factores como:
 
-**Acceso a memoria:**
-
+💾 Acceso a memoria:
 QuickSort trabaja con datos contiguos por lo cual es más eficiente
 
 HeapSort accede a posiciones separadas, por esto tiene un menor rendimiento
 
 AVL utiliza nodos enlazados, gracias a esto es más costoso en accesos
 
-**Costos internos:**
+⚡ Costos internos:
 Las operaciones dentro de cada algoritmo no tienen el mismo peso en tiempo real.
 
-**Interacción con hardware:**
+💻 Interacción con hardware:
 La caché del procesador influye significativamente en el rendimiento
 
 **Ventajas y desventajas de cada estructura:**
 
-| Estructura | Ventajas | Desventajas |
+| Estructura | Ventajas ✅ | Desventajas ❌|
 |------------|----------|-------------|
 | Vector + QuickSort | Alto rendimiento, uso eficiente de la memoria caché, bajo consumo de memoria adicional| Puede degradarse a O(n²) si el pivote no es adecuado |
 | Binary Heap + HeapSort | Complejidad garantizada en todos los casos (O(n log n)), no requiere memoria extra significativa (in-place) | Menor rendimiento práctico debido a accesos no contiguos en memoria |
